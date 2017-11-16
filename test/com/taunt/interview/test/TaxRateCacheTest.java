@@ -3,14 +3,11 @@ package com.taunt.interview.test;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
 import org.junit.*;
-import org.junit.runner.RunWith;
 
-import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
 import com.taunt.interview.TaxRateCache;
 
 public class TaxRateCacheTest {
