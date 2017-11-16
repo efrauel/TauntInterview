@@ -33,9 +33,10 @@ public class TaxRateCache {
 	}
 	
 	/**
-	 * Checks the cache for 
-	 * @param key
-	 * @return
+	 * Checks the cache for the key value. If it isn't present, it returns null.
+	 * If it is present, it moves the corresponding node to the front of the list indicating it was recently accessed.
+	 * @param key - an address
+	 * @return the tax rate for that address or null if not in cache.
 	 */
 	public Double get(String key){
 		if(cache.containsKey(key)){
@@ -51,8 +52,9 @@ public class TaxRateCache {
 	
 	/**
 	 * Stores this tax rate in the cache assocaiated with the given address (key)
-	 * @param key
-	 * @param taxRate
+	 * 
+	 * @param key - an address
+	 * @param taxRate - the sales tax associated with that address
 	 */
 	public synchronized void put(String key, double taxRate) {
 	
@@ -63,7 +65,9 @@ public class TaxRateCache {
 					cache.put(key, taxCode);
 					add(taxCode.node);
 				} else {
+					//remove the Least Recently Used key.
 					cache.remove(tail.prev.key);
+					//shuffle around the nodes so the new one is in front
 					remove(tail.prev);
 					cache.put(key, taxCode);
 					add(taxCode.node);
